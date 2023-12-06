@@ -10,7 +10,7 @@ var bodyParser = require('body-parser');  //me
 dotenv.config();  //me
 
 const app = express();
-const port = 3000;
+var port = process.env.PORT || 8000;
 const exphbs = require('express-handlebars');
 app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
 app.use(bodyParser.json());                                     // parse application/json
