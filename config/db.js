@@ -1,21 +1,21 @@
-
+const dotenv = require('dotenv');
 const mongoose = require('mongoose');
+dotenv.config();
 
-function initializeDatabase(connectionString) {
-  mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true });
+const dbuser = process.env.MDBUSER;
+const dbpass = process.env.MDBPASS;
+//change
+// Replace these with your MongoDB Atlas connection string and database name
+const connectionString = `mongodb+srv://${dbuser}:${dbpass}@cluster0.flwyiot.mongodb.net/sample_restaurants`;
 
-  const db = mongoose.connection;
-
-  db.on('error', (error) => {
-    console.error('MongoDB connection error:', error);
-  });
-
-  db.once('open', () => {
-    console.log('Connected to MongoDB');
-    // Start your Express server here
-  });
-}
-
-module.exports = {
-  initializeDatabase,
+const initializeMongoDB = async () => {
+  try {
+    await mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true });
+    console.log('Connected to MongoDB Atlas');
+  } catch (error) {
+    console.error('Error connecting to MongoDB:', error.message);
+    process.exit(1); // Exit the process if MongoDB connection fails
+  }
 };
+
+module.exports = initializeMongoDB;

@@ -1,0 +1,189 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Page Title</title>
+  <style>
+    h2 {
+      text-align: center;
+      font-size: xx-large;
+      padding: 2px;
+      font-weight: bold;
+      font-family: monospace;
+      color: brown;
+    }
+
+    .card {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      padding: 10px;
+      max-width: max-content;
+      margin: 5px auto;
+      min-height: max-content;
+    }
+
+    .allCards {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+
+    .information {
+      padding: 5px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+    }
+
+    .card h4 {
+      font-size: x-large;
+      font-weight: bolder;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    }
+
+    .card h4 span {
+      font-size: large;
+      font-weight: bold;
+      float: right;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    .address {
+      text-align: center;
+      font-size: medium;
+      font-weight: 400;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      padding: 5px;
+    }
+
+    .coord {
+      font-size: small;
+      font-weight: 300;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    .cuisine {
+      font-size: medium;
+      font-weight: medium;
+      font-family: sans-serif;
+    }
+
+    .cuisineName {
+      font-size: medium;
+      font-weight: 400;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      margin-left: 5px;
+    }
+
+    .reviews {
+      font-size: medium;
+      font-weight: medium;
+      font-family: sans-serif;
+    }
+
+    hr {
+      border-top: 1px dotted;
+    }
+
+    .pagination {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .pagination button {
+      padding: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+ <h2>RESTAURANTS COLLECTION DATA</h2>
+<div class="allCards">
+  {{#each data}}
+    <div class="card">
+      {{#if this.name}}
+        <h4>{{this.name}}
+       {{#if this.restaurant_id}}
+        <span>{{this.restaurant_id}}</span>
+       </h4>
+      {{/if}}
+      <hr>
+      {{/if}} 
+      <br><br>
+      <div class="information">
+        <fieldset>
+          <legend>Address</legend>
+          {{#if this.address.building}}
+            <span>{{this.address.building}}</span>
+          {{/if}}
+
+          {{#if this.address.street}}
+            <span>{{this.address.street}},</span>
+          {{/if}}
+          {{#if this.borough}}
+            <span>{{this.borough}},</span>
+          {{/if}}
+          {{#if this.address.zipcode}}
+            <span>{{this.address.zipcode}}</span>
+          {{/if}}
+          </p>
+          {{#if this.address.coord}}
+            <p class="coord">({{this.address.coord}})</p>
+          {{/if}}
+        </fieldset>
+        <br><br>
+        <fieldset>
+          <legend>Cuisine</legend>
+          {{#if this.cuisine}}
+            <p class="cuisineName">{{this.cuisine}}</p>
+          {{/if}} 
+        </fieldset>
+        <br><br>
+        <fieldset>
+          <legend>Reviews</legend>
+          {{#if this.grades}}
+            {{#each this.grades}}
+              {{#if this.date}}
+                <p><strong>Dated:</strong> {{this.date}}</p>
+              {{/if}}
+              
+              {{#if this.grade}}
+                <p><strong>Graded:</strong> {{this.grade}} ,
+              {{/if}}
+
+              {{#if this.score}}
+                <span><strong>Scored:</strong> {{this.score}}</span>
+              {{/if}}
+            </p>
+            {{/each}}
+          {{/if}}
+        </fieldset>
+      </div>
+    </div>
+  {{/each}}
+</div>
+<div class="pagination">
+        {{#if hasPrevPage}}
+            <button onclick="window.location.href='?page={{prevPage}}&perPage={{perPage}}'" {{#unless hasPrevPage}}disabled{{/unless}}>Previous</button>
+        {{else}}
+            <button disabled>Previous</button>
+        {{/if}}
+
+        {{#if hasNextPage}}
+            <button onclick="window.location.href='?page={{nextPage}}&perPage={{perPage}}'" {{#unless hasNextPage}}disabled{{/unless}}>Next</button>
+        {{else}}
+            <button disabled>Next</button>
+        {{/if}}
+
+        <button onclick="window.location.href='?page=1&perPage={{perPage}}'">First</button>
+        <button onclick="window.location.href='?page={{totalPages}}&perPage={{perPage}}'">Last</button>
+    </div>
+</body>
+</html>

@@ -1,11 +1,10 @@
-<!-- view/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login Page</title>
-  <style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Restaurants by Cuisine</title>
+    <style>
     body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
@@ -111,20 +110,13 @@ overflow: hidden;
   </style>
 </head>
 <body>
-  <div class="content">
-    <h1>Login Page</h1>
-    <form action="/login" method="post">
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username" required>
-      <br>
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required>
-      <br>
-      <button type="submit">Login</button>
+    <div class="content">
+    <h1>Search Restaurants by Cuisine</h1>
+    <form action="/restaurants/cuisine" method="POST">
+        <label for="cuisine">Cuisine:</label>
+        <input type="text" id="cuisine" name="cuisine" required>
+        <button type="submit">Search</button>
     </form>
-
-    <p>Not a member? <a href="/register">Register</a></p>
-  </div>
+    </div>
 </body>
 </html>
-

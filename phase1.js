@@ -136,8 +136,7 @@ app.get('/api/restaurants', async (req, res) => {
 });
 
 app.get('/api/restaurants/:id', async (req, res) => {
-  if (req.session.authenticated) {
-    const { id } = req.params;
+      const { id } = req.params;
   
     try {
       const restaurant = await Restaurant.findById(id).exec();
@@ -151,7 +150,7 @@ app.get('/api/restaurants/:id', async (req, res) => {
       console.error('Error retrieving restaurant by ID:', error.message);
       res.status(500).json({ error: 'Internal Server Error' });
     }
-    }
+    
   });
 
   // PUT /api/restaurants/:id

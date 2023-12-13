@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Restaurant</title>
+    <style>
+        /* Added some basic CSS for table styling */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .pagination {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .pagination button {
+            padding: 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Restaurant Details</h1>
+    
+    <!-- Add a hidden input for perPage -->
+    <input type="hidden" id="perPage" name="perPage" value="{{perPage}}">
+
+    <table>
+        <thead>
+            <tr>
+                <th>Restaurant ID</th>
+                <th>Name</th>
+                <th>Building</th>
+                <th>Street</th>
+                <th>Zipcode</th>
+                <th>Borough</th>
+                <th>Cuisine</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each data}}
+            <tr>
+                <td>{{restaurant_id}}</td>
+                <td>{{name}}</td>
+                <td>{{address.building}}</td>
+                <td>{{address.street}}</td>
+                <td>{{address.zipcode}}</td>
+                <td>{{borough}}</td>
+                <td>{{cuisine}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    
+    <div class="pagination">
+        {{#if hasPrevPage}}
+            <button onclick="window.location.href='?page={{prevPage}}&perPage={{perPage}}'" {{#unless hasPrevPage}}disabled{{/unless}}>Previous</button>
+        {{else}}
+            <button disabled>Previous</button>
+        {{/if}}
+
+        {{#if hasNextPage}}
+            <button onclick="window.location.href='?page={{nextPage}}&perPage={{perPage}}'" {{#unless hasNextPage}}disabled{{/unless}}>Next</button>
+        {{else}}
+            <button disabled>Next</button>
+        {{/if}}
+
+        <button onclick="window.location.href='?page=1&perPage={{perPage}}'">First</button>
+        <button onclick="window.location.href='?page={{totalPages}}&perPage={{perPage}}'">Last</button>
+    </div>
+</body>
+</html>

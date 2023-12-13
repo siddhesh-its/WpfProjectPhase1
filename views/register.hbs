@@ -1,11 +1,15 @@
-<!-- view/index.html -->
+<!-- register.hbs -->
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login Page</title>
-  <style>
+  <link rel="stylesheet" href="/path/to/register.css">
+  <title>Registration</title>
+</head>
+<style>
     body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
@@ -109,22 +113,20 @@ overflow: hidden;
       text-decoration: underline;
     }
   </style>
-</head>
+
 <body>
   <div class="content">
-    <h1>Login Page</h1>
-    <form action="/login" method="post">
+    <h2>Registration</h2>
+    <form action="/register" method="post">
       <label for="username">Username:</label>
       <input type="text" id="username" name="username" required>
-      <br>
+
       <label for="password">Password:</label>
       <input type="password" id="password" name="password" required>
-      <br>
-      <button type="submit">Login</button>
-    </form>
 
-    <p>Not a member? <a href="/register">Register</a></p>
+      <button type="submit">Register</button>
+    </form>
   </div>
 </body>
-</html>
 
+</html>
